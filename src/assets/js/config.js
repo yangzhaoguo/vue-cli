@@ -1,12 +1,11 @@
-const debug = true;
-
-let api;
-if (debug === true) {
-  api = 'http://59.110.233.88';
-  // api = 'http://192.168.111.65:8087';
-} else {
-  api = 'https://tmc.himyidea.com';
-}
+const allHref = window.location.href;
+const api = (() => {
+  if (allHref.indexOf("tmc.himyidea.com") !== -1) {
+    return 'https://tmc.himyidea.com';
+  } else {
+    return 'http://test.himyidea.com';
+  }
+})();
 
 export {
   api

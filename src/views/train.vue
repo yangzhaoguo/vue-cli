@@ -1,15 +1,19 @@
 <template>
-  <div class="con">
-    首页
-    <div class="left">
-      123123
-    </div>
+  <div class="con" style="color: red;">
+    {{name}}
   </div>
 </template>
 
 <script>
+  import { mapState } from 'vuex';
+
   export default {
-    name: "train"
+    name: "train",
+    computed: {
+      ...mapState({
+        name: state => state.aa.name
+      })
+    }
   };
 </script>
 

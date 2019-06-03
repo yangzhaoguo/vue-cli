@@ -1,36 +1,68 @@
 <template>
-  <div class="hello">
-    {{msg}}
-    <el-row>
-      <el-button @click.prevent="postdata" type="primary">主要按钮</el-button>
-    </el-row>
+  <div class="wrapper">
+    <div>
+      {{name}} ： {{phone}}
+    </div>
+    <div>
+      {{loading}}
+    </div>
+    <tt></tt>
+    <input type="text" :value="name" placeholder="名字" @input="nameOnInput">
+    <input type="text" placeholder="电话" @change="changeName(this.target.value)">
+    <button @click="ajaxPost">button</button>
   </div>
 </template>
 
 <script>
+  import { mapState, mapActions, mapMutations } from 'vuex';
+  import tt from './train';
+
   export default {
     name: 'Login',
-    data () {
+    data (){
       return {
         msg: '登录'
       };
     },
+    computed: {
+      ...mapState({
+        name: state => state.aa.name,
+        phone: state => state.aa.phone,
+        loading: state => state.isLoading
+      })
+    },
     methods: {
-      postdata () {
-        let data = {
-          companyNumber: 'zxzh',
-          password: '123456',
-          userNumber: 'yangzhaoguo'
+      ...mapActions('aa', [
+        'changeName',
+        'changePhone'
+      ]),
+      ...mapMutations(['toggleLoading']),
+      nameOnInput (e){
+        this.changeName({
+          data: e.target.value,
+          cb: (a) => {
+            console.log(a);
+          }
+        });
+      },
+      ajaxPost (){
+        const data = {
+          companyNumber: "zxzh",
+          password: "123456a",
+          userNumber: "yzg"
         };
-        let retCallback = (ret) => {
-          console.log(ret);
-          this.$router.push({name: 'train'});
+        const url = "/api/login/submitLogin.jhtml";
+        const ret = () => {
+          console.log(1);
         };
-        let errCallback = (err) => {
-          console.log(err);
+        const err = () => {
+          console.log(2);
         };
-        this.$request('/api/login/submitLogin.jhtml', 'post', data, retCallback, errCallback);
+        this.$request(url, "POST", data, ret, err);
       }
+    },
+    components: {
+      tt
     }
   };
 </script>

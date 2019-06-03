@@ -4,6 +4,7 @@ import Vue from 'vue';
 import Element from 'element-ui';
 import App from './App';
 import router from './router';
+import store from './vuex/index';
 import 'element-ui/lib/theme-chalk/index.css';
 import request from './assets/js/request';
 
@@ -15,6 +16,7 @@ Vue.config.devtools = true;
 new Vue({
   el: '#app',
   router,
-  components: {App},
+  store,
+  components: { App },
   template: '<App/>'
 });
