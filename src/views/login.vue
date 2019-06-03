@@ -10,6 +10,16 @@
     <input type="text" :value="name" placeholder="名字" @input="nameOnInput">
     <input type="text" placeholder="电话" @change="changeName(this.target.value)">
     <button @click="ajaxPost">button</button>
+    <transition
+      name="bounce"
+      enter-active-class="bounceInLeft"
+      leave-active-class="bounceOutRight"
+    >
+      <p v-if="show">hello</p>
+    </transition>
+    <div>
+      <button @click="show=!show">showHello</button>
+    </div>
   </div>
 </template>
 
@@ -21,7 +31,8 @@
     name: 'Login',
     data (){
       return {
-        msg: '登录'
+        msg: '登录',
+        show: false
       };
     },
     computed: {

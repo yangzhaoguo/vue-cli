@@ -5,6 +5,7 @@ import store from '../../vuex/index';
 
 let util = {};
 util.install = function (Vue){
+  // ajax请求
   Vue.prototype.$request = function (url = '', type = 'POST', data = {}, retCallback, errCallback, loadingShow = true, timeout = 60000){
     store.commit('toggleLoading', true);
     type = type.toUpperCase();
