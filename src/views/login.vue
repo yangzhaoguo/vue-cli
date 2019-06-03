@@ -1,12 +1,11 @@
 <template>
   <div class="wrapper">
     <div>
-      {{name}} ： {{phone}}
+      {{name}} : {{phone}}
     </div>
     <div>
       {{loading}}
     </div>
-    <tt></tt>
     <input type="text" :value="name" placeholder="名字" @input="nameOnInput">
     <input type="text" placeholder="电话" @change="changeName(this.target.value)">
     <button @click="ajaxPost">button</button>
@@ -19,20 +18,21 @@
     </transition>
     <div>
       <button @click="show=!show">showHello</button>
+      <router-link to="/list">goList</router-link>
     </div>
   </div>
 </template>
 
 <script>
   import { mapState, mapActions, mapMutations } from 'vuex';
-  import tt from './train';
 
   export default {
     name: 'Login',
     data (){
       return {
         msg: '登录',
-        show: false
+        show: false,
+        arr: 20
       };
     },
     computed: {
@@ -72,9 +72,7 @@
         this.$request(url, "POST", data, ret, err);
       }
     },
-    components: {
-      tt
-    }
+    components: {}
   };
 </script>
 

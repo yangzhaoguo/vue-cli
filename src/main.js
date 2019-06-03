@@ -6,6 +6,7 @@ import router from './router';
 import store from './vuex/index';
 import request from './assets/js/request';
 import 'vue2-animate/dist/vue2-animate.min.css';
+import './assets/css/reset.css';
 
 Vue.use(request);
 Vue.config.productionTip = false;
