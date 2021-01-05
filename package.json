@@ -15,7 +15,7 @@
     "dev-build": "vue-cli-service build --mode development"
   },
   "dependencies": {
-    "axios": "^0.18.0",
+    "axios": "^0.21.1",
     "mescroll.js": "^1.4.1",
     "qs": "^6.5.1",
     "vue": "^2.5.2",
